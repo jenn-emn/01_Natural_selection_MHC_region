@@ -20,7 +20,7 @@
 
 ### **- Reference data HGDP** :sparkles:
 
- - [Paper link](https://pmc.ncbi.nlm.nih.gov/articles/PMC7115999/).
+ - [Paper link](https://pmc.ncbi.nlm.nih.gov/articles/PMC7115999/). 930 participants.
  - [Data link](https://ngs.sanger.ac.uk/production/hgdp/hgdp_wgs.20190516/).
  - [Metadata](https://ngs.sanger.ac.uk/production/hgdp/hgdp_wgs.20190516/metadata/), population and super-population informations about all participants (930) is available.
  - Filtered HGDP is available.
@@ -48,11 +48,10 @@ $ cat /home/DATA/HGDP_vcf/HGDP_parental/ALL_POP.txt | wc -l
  > O dado está bastante filtrado, e está pronto para ser usado para merge com o REDS (ou qualquer outra população miscigenada de interesse)
 
 
-### **- Reference data 1KGP** :sparkles:
+### **- Sample data RED-III** :sparkles:
 
- - [Paper link]().
- - [Data link]().
- - [Metadata]().
+ - [Web link](https://redsivp.com/reds-iii/).
+ - [Paper link](https://pmc.ncbi.nlm.nih.gov/articles/PMC4383641/).
 ```
 # metadata ()
 ```
