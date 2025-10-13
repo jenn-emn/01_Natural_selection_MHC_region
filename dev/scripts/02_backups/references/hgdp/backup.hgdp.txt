@@ -1,0 +1,593 @@
+
+
+### /home/DATA/HGDP_vcf/HGDP_parental/filter_plink_tri.sh
+#!/bin/bash
+for i in {1..22}; do /home/chpassos/plink --bfile /media/storage/genevol/HGDP_parental/HGDP_AFR_EUR_NAM_EAS_chr${i}_plink --exclude /media/storage/genevol/HGDP_parental/hgdp_hg38_plink-merge.missnp --make-bed --out /media/storage/genevol/HGDP_parental/HGDP_AFR_EUR_NAM_EAS_chr${i}_plink_plinkTri; done
+
+
+### /home/DATA/HGDP_vcf/HGDP_parental/hgdp_vcf_to_plink.sh
+#!/bin/bash
+for i in {1..22}; do vcftools --gzvcf /raid/genevol/hgdp3.0/hgdp_wgs.20190516.full.chr${i}.vcf.gz --keep /home/chpassos/Analises/REDS/parental_pop/ALL_POP.txt --recode --out /media/storage/genevol/HGDP_parental/HGDP_AFR_EUR_NAM_EAS_chr${i}; /home/chpassos/plink --vcf /media/storage/genevol/HGDP_parental/HGDP_AFR_EUR_NAM_EAS_chr${i}.recode.vcf --make-bed --out /media/storage/genevol/HGDP_parental/HGDP_AFR_EUR_NAM_EAS_chr${i}_plink; rm /media/storage/genevol/HGDP_parental/HGDP_AFR_EUR_NAM_EAS_chr${i}.recode.vcf; done
+
+
+### /home/DATA/HGDP_vcf/HGDP_parental/keep_HGDP_snps.sh
+#!/bin/bash
+for i in {1..22}; do bcftools query -f '%CHROM %POS\n' /media/storage/genevol/HGDP_parental/hgdp3.0_filter/hgdp_wgs.20190516.full.chr${i}_filter_phased_AFR_EUR_NAM.vcf.gz -o /media/storage/genevol/HGDP_parental/hgdp_snps/HGDP_snps_chr${i}.txt; done
+
+
+### /home/DATA/HGDP_vcf/HGDP_parental/merge_plink_hgdp_2.sh
+#!/bin/bash
+rm mergelist.txt
+for i in {1..22}; do echo HGDP_AFR_EUR_NAM_EAS_chr${i}_plink_plinkTri >> mergelist.txt; done
+/home/chpassos/plink --merge-list mergelist.txt --make-bed --out /media/storage/genevol/HGDP_parental/hgdp_hg38_plink
+
+
+### /home/DATA/HGDP_vcf/HGDP_parental/merge_plink_hgdp.sh
+#!/bin/bash
+rm mergelist.txt
+for i in {1..22}; do echo HGDP_AFR_EUR_NAM_EAS_chr${i}_plink >> mergelist.txt; done
+/home/chpassos/plink --merge-list mergelist.txt --make-bed --out hgdp_hg38_plink
+
+
+### /home/DATA/HGDP_vcf/HGDP_parental/scripts/admixture_sl.sh
+#!/bin/bash
+#SBATCH -N 1
+#SBATCH --mem=8gb
+#SBATCH -p long
+/home/chpassos/admixture /media/storage/genevol/HGDP_parental/hgdp_plink/LD_HGDP_AFR_EUR_NAM.bed 3 -j20
+mv /media/storage/genevol/HGDP_parental/hgdp_plink/LD_HGDP_AFR_EUR_NAM.3.* /home/chpassos/Analises/REDS-III/pops_hgdp/
+
+
+### /home/DATA/HGDP_vcf/HGDP_parental/scripts/bi_indel.sh
+#!/bin/bash
+for i in {1..22}; do bcftools view --max-alleles 2 --exclude-types indels /media/storage/genevol/HGDP_parental/hgdp3.0_filter/hgdp_wgs.20190516.full.chr${i}_filter_phased_AFR_EUR_NAM.vcf.gz -O z -o /media/storage/genevol/HGDP_parental/hgdp3.0_filter/hgdp_wgs.20190516.full.chr${i}_filter_phased_AFR_EUR_NAM_bial_indel.vcf.gz; done
+
+
+### /home/DATA/HGDP_vcf/HGDP_parental/scripts/bi_indel_sl.sh
+#!/bin/bash
+#SBATCH -N 1
+#SBATCH --mem=8gb
+#SBATCH -p long
+/media/storage/genevol/HGDP_parental/scripts/bi_indel.sh
+
+
+### /home/DATA/HGDP_vcf/HGDP_parental/scripts/common_snps_onlyhwe.sh
+#!/bin/bash
+# Lets first rearrange our data, to make comparisons easier
+for file in hwe10minus5_positions_*.recode.vcf; do
+        # Working on the file's names
+        temp_file1="${file//.recode.vcf}"
+        echo "Original file: $temp_file1"
+        temp_file2="${temp_file1//hwe10minus5_positions_}"
+        echo "Working on Population: $temp_file2"
+        # Mantendo a coluna 1 e 2 do VCF da população em questão
+        output_file="${temp_file2}_pos_onlyhwe.txt"  # Name for the output file
+        echo -e "Output file name: ${output_file} \n"
+        grep -v "#" "$file" | cut -f1,2 | sed "s/\t/:/g" > "$output_file"
+done
+
+
+### /home/DATA/HGDP_vcf/HGDP_parental/scripts/common_snps.sh
+#!/bin/bash
+# Lets first rearrange our data, to make comparisons easier
+for file in hwe10minus5_bial_maf_*.recode.vcf; do
+        # Working on the file's names
+        temp_file1="${file//.recode.vcf}"
+        temp_file2="${temp_file1//hwe10minus5_bial_maf_}"
+        echo "Working on Population: $temp_file2"
+        # Mantendo a coluna 1 e 2 do VCF da população em questão
+        output_file="${temp_file2}_pos.txt"  # Name for the output file
+        echo -e "Output file name: ${output_file} \n"
+        grep -v "#" "$file" | cut -f1,2 | sed "s/\t/:/g" > "$output_file"
+done
+
+
+### /home/DATA/HGDP_vcf/HGDP_parental/scripts/concat_chr.sh
+#!/bin/bash
+bcftools concat \
+    /media/storage/genevol/HGDP_parental/hgdp3.0_filter/hgdp_wgs.20190516.full.chr1_filter_phased_AFR_EUR_NAM_bial_indel.vcf.gz \
+    /media/storage/genevol/HGDP_parental/hgdp3.0_filter/hgdp_wgs.20190516.full.chr2_filter_phased_AFR_EUR_NAM_bial_indel.vcf.gz \
+    /media/storage/genevol/HGDP_parental/hgdp3.0_filter/hgdp_wgs.20190516.full.chr3_filter_phased_AFR_EUR_NAM_bial_indel.vcf.gz \
+    /media/storage/genevol/HGDP_parental/hgdp3.0_filter/hgdp_wgs.20190516.full.chr4_filter_phased_AFR_EUR_NAM_bial_indel.vcf.gz \
+    /media/storage/genevol/HGDP_parental/hgdp3.0_filter/hgdp_wgs.20190516.full.chr5_filter_phased_AFR_EUR_NAM_bial_indel.vcf.gz \
+    /media/storage/genevol/HGDP_parental/hgdp3.0_filter/hgdp_wgs.20190516.full.chr6_filter_phased_AFR_EUR_NAM_bial_indel.vcf.gz \
+    /media/storage/genevol/HGDP_parental/hgdp3.0_filter/hgdp_wgs.20190516.full.chr7_filter_phased_AFR_EUR_NAM_bial_indel.vcf.gz \
+    /media/storage/genevol/HGDP_parental/hgdp3.0_filter/hgdp_wgs.20190516.full.chr8_filter_phased_AFR_EUR_NAM_bial_indel.vcf.gz \
+    /media/storage/genevol/HGDP_parental/hgdp3.0_filter/hgdp_wgs.20190516.full.chr9_filter_phased_AFR_EUR_NAM_bial_indel.vcf.gz \
+    /media/storage/genevol/HGDP_parental/hgdp3.0_filter/hgdp_wgs.20190516.full.chr10_filter_phased_AFR_EUR_NAM_bial_indel.vcf.gz \
+    /media/storage/genevol/HGDP_parental/hgdp3.0_filter/hgdp_wgs.20190516.full.chr11_filter_phased_AFR_EUR_NAM_bial_indel.vcf.gz \
+    /media/storage/genevol/HGDP_parental/hgdp3.0_filter/hgdp_wgs.20190516.full.chr12_filter_phased_AFR_EUR_NAM_bial_indel.vcf.gz \
+    /media/storage/genevol/HGDP_parental/hgdp3.0_filter/hgdp_wgs.20190516.full.chr13_filter_phased_AFR_EUR_NAM_bial_indel.vcf.gz \
+    /media/storage/genevol/HGDP_parental/hgdp3.0_filter/hgdp_wgs.20190516.full.chr14_filter_phased_AFR_EUR_NAM_bial_indel.vcf.gz \
+    /media/storage/genevol/HGDP_parental/hgdp3.0_filter/hgdp_wgs.20190516.full.chr15_filter_phased_AFR_EUR_NAM_bial_indel.vcf.gz \
+    /media/storage/genevol/HGDP_parental/hgdp3.0_filter/hgdp_wgs.20190516.full.chr16_filter_phased_AFR_EUR_NAM_bial_indel.vcf.gz \
+    /media/storage/genevol/HGDP_parental/hgdp3.0_filter/hgdp_wgs.20190516.full.chr17_filter_phased_AFR_EUR_NAM_bial_indel.vcf.gz \
+    /media/storage/genevol/HGDP_parental/hgdp3.0_filter/hgdp_wgs.20190516.full.chr18_filter_phased_AFR_EUR_NAM_bial_indel.vcf.gz \
+    /media/storage/genevol/HGDP_parental/hgdp3.0_filter/hgdp_wgs.20190516.full.chr19_filter_phased_AFR_EUR_NAM_bial_indel.vcf.gz \
+    /media/storage/genevol/HGDP_parental/hgdp3.0_filter/hgdp_wgs.20190516.full.chr20_filter_phased_AFR_EUR_NAM_bial_indel.vcf.gz \
+    /media/storage/genevol/HGDP_parental/hgdp3.0_filter/hgdp_wgs.20190516.full.chr21_filter_phased_AFR_EUR_NAM_bial_indel.vcf.gz \
+    /media/storage/genevol/HGDP_parental/hgdp3.0_filter/hgdp_wgs.20190516.full.chr22_filter_phased_AFR_EUR_NAM_bial_indel.vcf.gz \
+    -Oz -o /media/storage/genevol/HGDP_parental/hgdp3.0_filter/hgdp_wgs.20190516.full.ALLchr_filter_phased_AFR_EUR_NAM_bial_indel.vcf.gz
+
+
+### /home/DATA/HGDP_vcf/HGDP_parental/scripts/concat_chr_sl.sh
+#!/bin/bash
+#SBATCH -N 1
+#SBATCH --mem=8gb
+#SBATCH -p long
+/media/storage/genevol/HGDP_parental/scripts/concat_chr.sh
+
+
+### /home/DATA/HGDP_vcf/HGDP_parental/scripts/hgdp_afr_eur_nam.sh
+#!/bin/bash
+for i in {1..22}; do
+    bcftools view \
+        /media/storage/genevol/hgdp3.0_filter/phased/hgdp_wgs.20190516.full.chr${i}_filter_phased.recode.vcf.gz \
+        -S /media/storage/genevol/HGDP_parental/AFR_EUR_NAM.txt \
+        -Oz -o /media/storage/genevol/HGDP_parental/hgdp3.0_filter/hgdp_wgs.20190516.full.chr${i}_filter_phased_AFR_EUR_NAM.vcf.gz
+done
+
+
+### /home/DATA/HGDP_vcf/HGDP_parental/scripts/hgdp_afr_eur_nam_sl.sh
+#!/bin/bash
+#SBATCH -N 1
+#SBATCH --mem=16gb
+#SBATCH -p long
+/media/storage/genevol/HGDP_parental/scripts/hgdp_afr_eur_nam.sh
+
+
+### /home/DATA/HGDP_vcf/HGDP_parental/scripts/hwe_keep.sh
+#!/bin/bash
+
+# Defining our character vector, containing all of our subpopulations
+characters="BantuKenya BantuSouthAfrica Biaka Mandenka Mbuti San Yoruba Colombian Karitiana Maya Pima Surui Adygei Basque BergamoItalian French Orcadian Russian Sardinian Tuscan"
+# Converting this vector into an array
+IFS=' ' read -r -a char_array <<< "$characters"
+# Iterate through the array using a for loop
+for index in "${!char_array[@]}"
+do
+     # Saving vector element names
+     char="${char_array[$index]}"
+     # Modifying the variable, just for us to read below
+     echo "Modifying $char"
+     mod_char="hwe_maf_${char}.bim"
+     # Preparing the name of output
+     outp="file${index}.txt"
+     # Creating our single columned file
+     cat /media/storage/genevol/HGDP_parental/subpops/${mod_char} | \
+     cut -f1,4 | sed "s/\t/:/g" > /media/storage/genevol/HGDP_parental/subpops/file_${index}.txt
+     # Warning us that it is done :)
+     echo "Done with ${char} pop"
+done
+# Now we are going to generate the single file
+path_to_files="/media/storage/genevol/HGDP_parental/subpops/"
+file_prefix="file_"
+file_extension=".txt"
+# Combine the first two files
+awk 'FNR==NR {arr[$0]; next} $0 in arr' \
+    ${path_to_files}${file_prefix}0${file_extension} \
+    ${path_to_files}${file_prefix}1${file_extension} > \
+    /media/storage/genevol/HGDP_parental/subpops/common_rows.txt
+# Loop through the remaining files and filter common rows
+for ((i=2; i<=19; i++))
+do
+    awk 'FNR==NR {arr[$0]; next} $0 in arr' \
+        /media/storage/genevol/HGDP_parental/subpops/common_rows.txt  \
+        "${path_to_files}${file_prefix}${i}${file_extension}" > \
+        /media/storage/genevol/HGDP_parental/subpops/temp.txt
+    mv /media/storage/genevol/HGDP_parental/subpops/temp.txt /media/storage/genevol/HGDP_parental/subpops/common_rows.txt
+done
+
+
+### /home/DATA/HGDP_vcf/HGDP_parental/scripts/hwe_keep_sl.sh
+#!/bin/bash
+#SBATCH -N 1
+#SBATCH --mem=8gb
+#SBATCH -p long
+/media/storage/genevol/HGDP_parental/scripts/hwe_keep.sh
+
+
+### /home/DATA/HGDP_vcf/HGDP_parental/scripts/keep_common_rows_onlyhwe.sh
+#!/bin/bash
+# List all your file names here separated by spaces within the array
+files=("BantuKenya_pos_onlyhwe.txt" "BantuSouthAfrica_pos_onlyhwe.txt" "Biaka_pos_onlyhwe.txt" "Mandenka_pos_onlyhwe.txt" "Mbuti_pos_onlyhwe.txt" "San_pos_onlyhwe.txt" "Yoruba_pos_onlyhwe.txt" "Adygei_pos_onlyhwe.txt" "Basque_pos_onlyhwe.txt" "BergamoItalian_pos_onlyhwe.txt" "French_pos_onlyhwe.txt" "Orcadian_pos_onlyhwe.txt" "Russian_pos_onlyhwe.txt" "Sardinian_pos_onlyhwe.txt" "Tuscan_pos_onlyhwe.txt" "Colombian_pos_onlyhwe.txt" "Karitiana_pos_onlyhwe.txt" "Maya_pos_onlyhwe.txt" "Pima_pos_onlyhwe.txt" "Surui_pos_onlyhwe.txt")
+# Process the first file in the array
+awk 'FNR==NR {arr[$0]; next} $0 in arr' "${files[0]}" "${files[1]}" > common_rows.tmp
+# Loop through the rest of the files
+for ((i=2; i<"${#files[@]}"; i++)); do
+    awk 'FNR==NR {arr[$0]; next} $0 in arr' common_rows.tmp "${files[$i]}" > common_rows.tmp2
+    mv common_rows.tmp2 common_rows.tmp
+done
+# Rename final file
+mv common_rows.tmp common_rows_final_onlyhwe.txt
+
+
+### /home/DATA/HGDP_vcf/HGDP_parental/scripts/keep_common_rows.sh
+#!/bin/bash
+# List all your file names here separated by spaces within the array
+files=("BantuKenya_pos.txt" "BantuSouthAfrica_pos.txt" "Biaka_pos.txt" "Mandenka_pos.txt" "Mbuti_pos.txt" "San_pos.txt" "Yoruba_pos.txt" "Adygei_pos.txt" "Basque_pos.txt" "BergamoItalian_pos.txt" "French_pos.txt" "Orcadian_pos.txt" "Russian_pos.txt" "Sardinian_pos.txt" "Tuscan_pos.txt" "Colombian_pos.txt" "Karitiana_pos.txt" "Maya_pos.txt" "Pima_pos.txt" "Surui_pos.txt")
+# Process the first file in the array
+awk 'FNR==NR {arr[$0]; next} $0 in arr' "${files[0]}" "${files[1]}" > common_rows.tmp
+# Loop through the rest of the files
+for ((i=2; i<"${#files[@]}"; i++)); do
+    awk 'FNR==NR {arr[$0]; next} $0 in arr' common_rows.tmp "${files[$i]}" > common_rows.tmp2
+    mv common_rows.tmp2 common_rows.tmp
+done
+# Rename final file
+mv common_rows.tmp common_rows_final.txt
+
+
+### /home/DATA/HGDP_vcf/HGDP_parental/scripts/keep_subpop.sh
+#!/bin/bash
+# In here we have the file containing all of our subpopulations. Let's save it as an variable
+file="/home/chpassos/Analises/REDS-III/pops_hgdp/pop_wahlund_filter.txt"
+# Check if the file exists
+if [ -e "$file" ]; then
+    # Read the file line by  line
+    while IFS= read -r line; do
+        pops=$line # Save each line as a variable
+        mod_pop=$(echo "$pops" | sed "s/\.txt//g") # Removing .txt from each pop
+        echo "We are working with the subpop: $mod_pop"
+        # First we need to generate a file that Plink understands...
+        awk '{print $0,$NF}' /raid/genevol/hgdp3.0/$pops > /media/storage/genevol/HGDP_parental/subpops/col2_$mod_pop.txt
+        # Then, with this file ready, we can filter each subpopulation with
+       echo "\nFiltering subpop: $mod_pop"
+        /home/chpassos/plink --bfile /media/storage/genevol/HGDP_parental/hgdp_plink/hgdp_ALLchr_filter_phased_AFR_EUR_NAM_bial_indel_missing --keep /media/storage/genevol/HGDP_parental/subpops/col2_$mod_pop.txt --make-bed --out /media/storage/genevol/HGDP_parental/subpops/plink_$mod_pop
+        # Now, for each subpopulation, remove positions extremely out of HWE with
+       echo "\nHardy-Weinberg filter for subpop: $mod_pop"
+        /home/chpassos/plink --bfile /media/storage/genevol/HGDP_parental/subpops/plink_$mod_pop --hwe 0.00000001 --make-bed --out /media/storage/genevol/HGDP_parental/subpops/hwe_$mod_pop
+       # Afterwards, we will keep positions with MAF >= 5%, individually for each subpopulation
+       echo "\nMAF filter for subpop: $mod_pop"
+       /home/chpassos/plink --bfile /media/storage/genevol/HGDP_parental/subpops/hwe_$mod_pop --maf 0.05 --make-bed --out /media/storage/genevol/HGDP_parental/subpops/hwe_maf_$mod_pop
+    done < "$file"
+else
+    echo "File not found: $file"
+fi
+
+
+### /home/DATA/HGDP_vcf/HGDP_parental/scripts/keep_subpop_sl.sh
+#!/bin/bash
+#SBATCH -N 1
+#SBATCH --mem=8gb
+#SBATCH -p long
+/media/storage/genevol/HGDP_parental/scripts/keep_subpop.sh
+
+
+### /home/DATA/HGDP_vcf/HGDP_parental/scripts/miss_geno.sh
+#!/bin/bash
+# In here we have the file containing all of our subpopulations. Let's save it as an variable
+file="/home/chpassos/Analises/REDS-III/pops_hgdp/pop_wahlund_filter.txt"
+# Check if the file exists
+if [ -e "$file" ]; then
+    # Read the file line by  line
+    while IFS= read -r line; do
+        pops=$line # Save each line as a variable
+        mod_pop=$(echo "$pops" | sed "s/\.txt//g") # Removing .txt from each pop
+        echo "We are transforming: $mod_pop"
+        # Filtering missing data
+        plink1.9 --bfile \
+            /media/storage/genevol/HGDP_parental/hgdp_plink/hgdp_wgs.20190516.full.ALLchr_filter_phased_hwe_bi_$mod_pop \
+            --geno 0.05 \
+            --make-bed \
+            --out /media/storage/genevol/HGDP_parental/hgdp_plink/hgdp_wgs.20190516.full.ALLchr_filter_phased_hwe_bi_miss_$mod_pop
+    done < "$file"
+else
+    echo "File not found: $file"
+fi
+
+
+### /home/DATA/HGDP_vcf/HGDP_parental/scripts/miss_geno_sl.sh
+#!/bin/bash
+#SBATCH -N 1
+#SBATCH --mem=8gb
+#SBATCH -p long
+/media/storage/genevol/HGDP_parental/scripts/miss_geno.sh
+
+
+### /home/DATA/HGDP_vcf/HGDP_parental/scripts/teste_arquivo.sh
+#!/bin/bash
+# In here we have the file containing all of our subpopulations. Let's save it as an variable
+file="/media/storage/genevol/HGDP_parental/subpops/keep_pops.txt"
+# Check if the file exists
+if [ -e "$file" ]; then
+    # Read the file line by  line
+    while IFS= read -r line; do
+        pops=$line # Save each line as a variable
+        mod_pop=$(echo "$pops" | sed "s/\.txt//g") # Removing .txt from each pop
+        echo "We are working with the subpop: $mod_pop"
+        echo "Its file name is $pops"
+        # Copy each subpop file into our folder
+        echo "The first step is to copy the above file onto our specified folder"
+        cat /home/avila/ancestralidade/pops_hgdp/$pops > \
+            /media/storage/genevol/HGDP_parental/temp/$mod_pop.txt 
+        # Using BCFTools to filter individuals in each population, one at time
+        echo "Once copied, we filter each subpopulation, once at time"
+        bcftools view /media/storage/genevol/HGDP_parental/temp/hgdp_wgs.20190516.full.ALLchr_filter_phased_AFR_EUR_NAM_indelBial.vcf.gz \
+            -S /media/storage/genevol/HGDP_parental/temp/$mod_pop.txt | \
+            bgzip -c > \
+            /media/storage/genevol/HGDP_parental/temp/hgdp_wgs.20190516.full.ALLchr_filter_phased_indelBial_$mod_pop.vcf.gz
+        # Use VCFTools to remove positions that have p-value less than 0.00001 in HWE test (I saw this p-value somewhere (10e-5), although we were using 10e-8 previously)
+        echo "Begin HWE filter for genotyping errors (p-value < 10e-5)"
+        vcftools --gzvcf /media/storage/genevol/HGDP_parental/temp/hgdp_wgs.20190516.full.ALLchr_filter_phased_indelBial_$mod_pop.vcf.gz \
+            --hwe 0.00001 \
+            --recode \
+            --out /media/storage/genevol/HGDP_parental/temp/hwe10minus5_positions_$mod_pop
+        echo "Done with HWE: $mod_pop"
+        # Use VCFTools to keep only variants that have minor allele frequency above 1%, using the file already filtered for HWE
+        echo "Begin MAF to remove rare alleles (<1% freq)"
+        vcftools --gzvcf /media/storage/genevol/HGDP_parental/temp/hwe10minus5_positions_$mod_pop.recode.vcf \
+            --maf 0.01 \
+            --recode \
+            --out /media/storage/genevol/HGDP_parental/temp/hwe10minus5_bial_maf_$mod_pop
+        echo "Done with MAF: $mod_pop"
+     done < "$file"
+else
+    echo "File not found: $file"
+fi
+
+
+### /home/DATA/HGDP_vcf/HGDP_parental/scripts/wahlund_hgdp.sh
+#!/bin/bash
+# In here we have the file containing all of our subpopulations. Let's save it as an variable
+file="/home/chpassos/Analises/REDS-III/pops_hgdp/pop_wahlund_filter.txt"
+# Check if the file exists
+if [ -e "$file" ]; then
+    # Read the file line by  line
+    while IFS= read -r line; do
+        pops=$line # Save each line as a variable
+        mod_pop=$(echo "$pops" | sed "s/\.txt//g") # Removing .txt from each pop
+        echo "We are filtering for: $mod_pop"
+        # Now we can start work through the BCFTools filters
+        # Filter each subpopulation separately
+        bcftools view /media/storage/genevol/HGDP_parental/hgdp3.0_filter/hgdp_wgs.20190516.full.ALLchr_filter_phased_AFR_EUR_NAM.vcf.gz \
+            -S /raid/genevol/hgdp3.0/$pops \
+            -Oz -o /media/storage/genevol/HGDP_parental/hgdp3.0_filter/hgdp_wgs.20190516.full.ALLchr_filter_phased_$mod_pop.vcf.gz
+        # Then, we apply the HWE filter
+        vcftools --gzvcf /media/storage/genevol/HGDP_parental/hgdp3.0_filter/hgdp_wgs.20190516.full.ALLchr_filter_phased_$mod_pop.vcf.gz \
+            --hardy --out /media/storage/genevol/HGDP_parental/hgdp3.0_filter/hwe_positions_$mod_pop
+    done < "$file"
+else
+    echo "File not found: $file"
+fi
+
+
+### /home/DATA/HGDP_vcf/HGDP_parental/scripts/wahlund_sl.sh
+#!/bin/bash
+#SBATCH -N 1
+#SBATCH --mem=8gb
+#SBATCH -p long
+/home/chpassos/Analises/REDS-III/filters/wahlund_hgdp.sh
+
+
+### /home/DATA/HGDP_vcf/HGDP_parental/scripts/teste/subpop_filters.sh
+#!/bin/bash
+# In here we have the file containing all of our subpopulations. Let's save it as an variable
+file="/media/storage/genevol/HGDP_parental/teste/keep_pops.txt"
+# Check if the file exists
+if [ -e "$file" ]; then
+    # Read the file line by  line
+    while IFS= read -r line; do
+        pops=$line # Save each line as a variable
+        mod_pop=$(echo "$pops" | sed "s/\.txt//g") # Removing .txt from each pop
+        echo "We are working with the subpop: $mod_pop"
+        # Copy each subpop file into our folder
+        cat /raid/genevol/hgdp3.0/$pops > /media/storage/genevol/HGDP_parental/teste/$mod_pop.txt 
+        # Using BCFTools to filter individuals in each population, one at time
+        bcftools view  hgdp_wgs.20190516.full.ALLchr_filter_phased_AFR_EUR_NAM_TESTE_indelBial.recode.vcf \
+            -S /media/storage/genevol/HGDP_parental/teste/$mod_pop.txt -O z -o /media/storage/genevol/HGDP_parental/teste/hgdp_wgs.20190516.full.ALLchr_filter_phased_indelBial_$mod_pop.vcf.gz
+        # Use VCFTools to remove positions that have p-value less than 0.00001 in HWE test (I saw this p-value somewhere (10e-5), although we were using 10e-8 previously)
+        vcftools --gzvcf /media/storage/genevol/HGDP_parental/teste/hgdp_wgs.20190516.full.ALLchr_filter_phased_indelBial_$mod_pop.vcf.gz \
+            --hwe 0.00001 --recode --out /media/storage/genevol/HGDP_parental/teste/hwe10minus5_positions_$mod_pop
+        # Use VCFTools to keep only variants that have minor allele frequency above 5%, using the file already filtered for HWE
+        vcftools --gzvcf /media/storage/genevol/HGDP_parental/teste/hwe10minus5_positions_$mod_pop.recode.vcf \
+            --maf 0.05 --recode --out /media/storage/genevol/HGDP_parental/teste/hwe10minus5_bial_maf_$mod_pop
+     done < "$file"
+else
+    echo "File not found: $file"
+fi
+
+
+### /home/DATA/HGDP_vcf/HGDP_parental/scripts/teste/keep_common_rows.sh
+#!/bin/bash
+# List all your file names here separated by spaces within the array
+files=("BantuKenya_pos.txt" "BantuSouthAfrica_pos.txt" "Biaka_pos.txt" "Mandenka_pos.txt" "Mbuti_pos.txt" "San_pos.txt" \
+    "Yoruba_pos.txt" "Adygei_pos.txt" "Basque_pos.txt" "BergamoItalian_pos.txt" "French_pos.txt" "Orcadian_pos.txt" \
+    "Russian_pos.txt" "Sardinian_pos.txt" "Tuscan_pos.txt" "Colombian_pos.txt" "Karitiana_pos.txt" "Maya_pos.txt" "Pima_pos.txt" "Surui_pos.txt")
+# Process the first file in the array
+awk 'FNR==NR {arr[$0]; next} $0 in arr' "${files[0]}" "${files[1]}" > common_rows.tmp
+# Loop through the rest of the files
+for ((i=2; i<"${#files[@]}"; i++)); do
+    awk 'FNR==NR {arr[$0]; next} $0 in arr' common_rows.tmp "${files[$i]}" > common_rows.tmp2
+    mv common_rows.tmp2 common_rows.tmp
+done
+# Rename final file
+mv common_rows.tmp common_rows_final.txt
+
+
+### /home/DATA/HGDP_vcf/HGDP_parental/scripts/teste/sep_cols_vcf_subpops.sh
+#!/bin/bash
+for file in hwe10minus5_bial_maf_*.recode.vcf; do
+        # Trabalhando nos nomes
+        temp_file1="${file//.recode.vcf}"
+        temp_file2="${temp_file1//hwe10minus5_bial_maf_}"
+        echo "Pop: $temp_file2"
+        # Mantendo a coluna 1 e 2 do VCF da população em questão
+        output_file="${temp_file2}_pos.txt"  # Name for the output file
+        grep -v "#" "$file" | cut -f1,2 | sed "s/\t/:/g" > "$output_file"
+done
+
+
+### /home/DATA/HGDP_vcf/HGDP_parental/scripts/temp/common_snps_onlyhwe.sh
+#!/bin/bash
+# Lets first rearrange our data, to make comparisons easier
+for file in hwe10minus5_positions_*.recode.vcf; do
+        # Working on the file's names
+        temp_file1="${file//.recode.vcf}"
+        echo "Original file: $temp_file1"
+        temp_file2="${temp_file1//hwe10minus5_positions_}"
+        echo "Working on Population: $temp_file2"
+        # Mantendo a coluna 1 e 2 do VCF da população em questão
+        output_file="${temp_file2}_pos_onlyhwe.txt"  # Name for the output file
+        echo -e "Output file name: ${output_file} \n"
+        grep -v "#" "$file" | cut -f1,2 | sed "s/\t/:/g" > "$output_file"
+
+
+### /home/DATA/HGDP_vcf/HGDP_parental/scripts/temp/common_snps.sh
+#!/bin/bash
+# Lets first rearrange our data, to make comparisons easier
+for file in hwe10minus5_bial_maf_*.recode.vcf; do
+        # Working on the file's names
+        temp_file1="${file//.recode.vcf}"
+        temp_file2="${temp_file1//hwe10minus5_bial_maf_}"
+        echo "Working on Population: $temp_file2"
+        # Mantendo a coluna 1 e 2 do VCF da população em questão
+        output_file="${temp_file2}_pos.txt"  # Name for the output file
+        echo -e "Output file name: ${output_file} \n"
+        grep -v "#" "$file" | cut -f1,2 | sed "s/\t/:/g" > "$output_file"
+done
+
+
+### /home/DATA/HGDP_vcf/HGDP_parental/scripts/temp/keep_common_rows_onlyhwe.sh
+#!/bin/bash
+# List all your file names here separated by spaces within the array
+files=("BantuKenya_pos_onlyhwe.txt" "BantuSouthAfrica_pos_onlyhwe.txt" "Biaka_pos_onlyhwe.txt" "Mandenka_pos_onlyhwe.txt" \
+    "Mbuti_pos_onlyhwe.txt" "San_pos_onlyhwe.txt" "Yoruba_pos_onlyhwe.txt" "Adygei_pos_onlyhwe.txt" "Basque_pos_onlyhwe.txt" \
+    "BergamoItalian_pos_onlyhwe.txt" "French_pos_onlyhwe.txt" "Orcadian_pos_onlyhwe.txt" "Russian_pos_onlyhwe.txt" "Sardinian_pos_onlyhwe.txt" \
+    "Tuscan_pos_onlyhwe.txt" "Colombian_pos_onlyhwe.txt" "Karitiana_pos_onlyhwe.txt" "Maya_pos_onlyhwe.txt" "Pima_pos_onlyhwe.txt" "Surui_pos_onlyhwe.txt")
+# Process the first file in the array
+awk 'FNR==NR {arr[$0]; next} $0 in arr' "${files[0]}" "${files[1]}" > common_rows.tmp
+# Loop through the rest of the files
+for ((i=2; i<"${#files[@]}"; i++)); do
+    awk 'FNR==NR {arr[$0]; next} $0 in arr' common_rows.tmp "${files[$i]}" > common_rows.tmp2
+    mv common_rows.tmp2 common_rows.tmp
+done
+# Rename final file
+mv common_rows.tmp common_rows_final_onlyhwe.txt
+
+
+### /home/DATA/HGDP_vcf/HGDP_parental/scripts/temp/keep_common_rows.sh
+#!/bin/bash
+# List all your file names here separated by spaces within the array
+files=("BantuKenya_pos.txt" "BantuSouthAfrica_pos.txt" "Biaka_pos.txt" "Mandenka_pos.txt" "Mbuti_pos.txt" "San_pos.txt" "Yoruba_pos.txt" "Adygei_pos.txt" \
+    "Basque_pos.txt" "BergamoItalian_pos.txt" "French_pos.txt" "Orcadian_pos.txt" "Russian_pos.txt" "Sardinian_pos.txt" "Tuscan_pos.txt" "Colombian_pos.txt" \
+    "Karitiana_pos.txt" "Maya_pos.txt" "Pima_pos.txt" "Surui_pos.txt")
+# Process the first file in the array
+awk 'FNR==NR {arr[$0]; next} $0 in arr' "${files[0]}" "${files[1]}" > common_rows.tmp
+# Loop through the rest of the files
+for ((i=2; i<"${#files[@]}"; i++)); do
+    awk 'FNR==NR {arr[$0]; next} $0 in arr' common_rows.tmp "${files[$i]}" > common_rows.tmp2
+    mv common_rows.tmp2 common_rows.tmp
+done
+# Rename final file
+mv common_rows.tmp common_rows_final.txt
+
+
+### /home/DATA/REDS_lai/HGDPfilter.sh
+#!/bin/bash
+#SBATCH -N 1
+#SBATCH --mem=8gb
+#SBATCH -p long
+for i in {1..22}; do \
+    vcftools --gzvcf \
+        /media/storage/genevol/HGDP_parental/hgdp3.0_filter/hgdp_wgs.20190516.full.ALLchr_filter_phased_AFR_EUR_NAM_bial_indel.vcf.gz \
+        --positions /media/storage/genevol/REDS_lai/chr${i}/pos_common_chr${i}.txt \
+        --recode --out /media/storage/genevol/REDS_lai/chr${i}/HGDP_chr${i}\
+done
+
+
+### /home/DATA/REDS_lai/REDSfilter.sh
+#!/bin/bash
+#SBATCH -N 1
+#SBATCH --mem=8gb
+#SBATCH -p long
+for i in {1..22}; do
+    vcftools --gzvcf /media/storage/genevol/REDS_vcfs/freeze10b/temp/freeze.10b.ALLchr.pass_only.phased_onlyREDS_trimmed_HGDPsnps.recode.vcf.gz \
+    --positions /media/storage/genevol/REDS_lai/chr${i}/pos_common_chr${i}.txt --recode --out /media/storage/genevol/REDS_lai/chr${i}/REDS_chr${i}
+done
+
+
+### /home/DATA/REDS_vcfs/freeze10b/plink_format/duplicated_vars.sh
+#!/bin/bash
+for i in {1..22}; do
+    /home/chpassos/plink --bfile /media/storage/genevol/REDS_vcfs/freeze10b/plink_format/chr${i}_REDS_trimmed_bialleleNoindel_HGDPSNPs_freeze10b_phased \
+        --list-duplicate-vars suppress-first --make-bed --out /media/storage/genevol/REDS_vcfs/freeze10b/plink_format/chr${i}_duplicated_vars
+    /home/chpassos/plink --bfile /media/storage/genevol/REDS_vcfs/freeze10b/plink_format/chr${i}_REDS_trimmed_bialleleNoindel_HGDPSNPs_freeze10b_phased \
+        --exclude /media/storage/genevol/REDS_vcfs/freeze10b/plink_format/chr${i}_duplicated_vars.dupvar --make-bed \
+        --out /media/storage/genevol/REDS_vcfs/freeze10b/plink_format/chr${i}_REDS_trimmed_bialleleNoindel_HGDPSNPs_dupvar_freeze10b_phased
+done
+
+
+### /home/DATA/REDS_vcfs/freeze10b/plink_format/filter_plink_tri.sh
+#!/bin/bash
+for i in {1..22}; do
+    /home/chpassos/plink --bfile /media/storage/genevol/REDS_vcfs/freeze10b/plink_format/chr${i}_REDS_trimmed_bialleleNoindel_HGDPSNPs_freeze10b_phased \
+    --exclude /media/storage/genevol/REDS_vcfs/freeze10b/plink_format/reds_f10_plink-merge.missnp --make-bed \
+    --out /media/storage/genevol/REDS_vcfs/freeze10b/plink_format/chr${i}_REDS_trimmed_bialleleNoindel_HGDPSNPs_plinkTri_freeze10b_phased
+done
+
+
+### /home/DATA/REDS_vcfs/freeze10b/plink_format/merge_plink_reds_2.sh
+#!/bin/bash
+rm mergelist.txt
+for i in {1..22}; do echo chr${i}_REDS_trimmed_bialleleNoindel_HGDPSNPs_plinkTri_freeze10b_phased >> mergelist.txt; done
+/home/chpassos/plink --merge-list mergelist.txt --make-bed --out reds_f10_plink
+
+
+### /home/DATA/REDS_vcfs/freeze10b/plink_format/merge_plink_reds.sh
+#!/bin/bash
+rm mergelist.txt
+for i in {1..22}; do echo chr${i}_REDS_trimmed_bialleleNoindel_HGDPSNPs_freeze10b_phased >> mergelist.txt; done
+/home/chpassos/plink --merge-list mergelist.txt --make-bed --out reds_f10_plink
+
+
+### /home/DATA/REDS_vcfs/freeze10b/plink_format/vcf_to_plink.sh
+#!/bin/bash
+for i in {1..22}; do
+    /home/chpassos/plink --vcf /media/storage/genevol/REDS_vcfs/freeze10b/plink_format/chr${i}_REDS_trimmed_biallelic_noindel_HGDPSNPs_freeze10b_phased.recode.vcf \
+    --make-bed --out /media/storage/genevol/REDS_vcfs/freeze10b/plink_format/chr${i}_REDS_trimmed_bialleleNoindel_HGDPSNPs_freeze10b_phased
+done
+
+
+### /home/DATA/REDS_vcfs/freeze10b/scripts/keep_HGDPsnps_inREDS.sh
+#!/bin/bash
+for i in {1..22}; do
+    vcftools --gzvcf /media/storage/genevol/REDS_vcfs/freeze10b/temp/freeze.10b.chr${i}.pass_only.phased_onlyREDS_trimmed.vcf.gz \
+    --positions /media/storage/genevol/HGDP_parental/hgdp_snps/HGDP_snps_chr${i}.txt --recode \
+    --out /media/storage/genevol/REDS_vcfs/freeze10b/temp/freeze.10b.chr${i}.pass_only.phased_onlyREDS_trimmed_HGDPsnps
+done
+
+
+### /home/DATA/REDS_vcfs/freeze10b/scripts/keep_REDS.sh
+#!/bin/bash
+for i in {1..22}; do
+    bcftools view -S /home/chpassos/Analises/REDS-III/REDS_sampleID_freeze10b.txt \
+    /media/storage/genevol/REDS_vcfs/freeze10b/raw/freeze.10b.chr${i}.pass_only.phased.bcf \
+    -O z -o /media/storage/genevol/REDS_vcfs/freeze10b/temp/freeze.10b.chr${i}.pass_only.phased_onlyREDS.vcf.gz
+done
+
+
+### /home/DATA/REDS_vcfs/freeze10b/scripts/remove_indel_multial_trim.sh
+#!/bin/bash
+for i in {1..22}; do
+    bcftools view -i 'GT="alt"' --max-alleles 2 --exclude-types indels /media/storage/genevol/REDS_vcfs/freeze10b/chr${i}_onlyREDS_freeze10b_phased.vcf.gz \
+    -O z -o /media/storage/genevol/REDS_vcfs/freeze10b/chr${i}_onlyREDS_trimmed_freeze10b_phased.vcf.gz
+done
+
+
+### /home/DATA/REDS_vcfs/freeze10b/scripts/trim_REDS.sh
+#!/bin/bash
+for i in {1..22}; do
+    bcftools view -i 'GT="alt"' --max-alleles 2 --exclude-types indels /media/storage/genevol/REDS_vcfs/freeze10b/temp/freeze.10b.chr${i}.pass_only.phased_onlyREDS.vcf.gz \
+    -O z -o /media/storage/genevol/REDS_vcfs/freeze10b/temp/freeze.10b.chr${i}.pass_only.phased_onlyREDS_trimmed.vcf.gz
+done
+
+
+### /home/DATA/REDS_vcfs/freeze10b/scripts/vcf_to_plink_reds.sh
+#!/bin/bash
+for i in {1..22}; do
+    /home/chpassos/plink --vcf /media/storage/genevol/REDS_vcfs/freeze10b/temp/freeze.10b.chr${i}.pass_only.phased_onlyREDS_trimmed_HGDPsnps.recode.vcf \
+    --make-bed --out /media/storage/genevol/REDS_vcfs/freeze10b/temp/freeze.10b.chr${i}.pass_only.phased_onlyREDS_trimmed_HGDPsnps_plink
+done
+
+
+#end
