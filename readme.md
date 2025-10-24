@@ -25,12 +25,13 @@
  - Backup is in local machine at /home/jenn/genevol/data/data_toys/hapmap3_from_admixture/
  - [hapmap3 from admixture](https://dalexander.github.io/admixture/download.html)
 
-> ###########################################################################################
+> ####################################################################################
 > - Reference European samples: 572.
 > - Reference African samples: 871.
 > - Reference East Asian samples: 787.
 > - Other reference samples: 1,168.
-> ###########################################################################################
+>
+> ####################################################################################
 
 ### :sparkles: **Reference data from 1000 Genome Project** :sparkles:
 
