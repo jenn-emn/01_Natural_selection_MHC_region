@@ -81,7 +81,7 @@ $ cat /home/DATA/HGDP_vcf/HGDP_parental/ALL_POP.txt | wc -l
 > - Admixed samples: 1,323. São Paulo city of Brazil.
 
 
-### vAdmixed data from RED-III** :sparkles:
+### :sparkles: **Admixed data from RED-III** :sparkles:
 
  - [Web link](https://redsivp.com/reds-iii/).
  - [Paper link](https://pmc.ncbi.nlm.nih.gov/articles/PMC4383641/).
