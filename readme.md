@@ -21,7 +21,7 @@
 
 ## Data
 
-### **- Data toys** :sparkles:
+### :sparkles: **Data toys** :sparkles:
  - Backup is in local machine at /home/jenn/genevol/data/data_toys/hapmap3_from_admixture/
  - [hapmap3 from admixture](https://dalexander.github.io/admixture/download.html)
 
@@ -30,7 +30,7 @@
 > Reference East Asian samples: 787.
 > Other reference samples: 1,168.
 
-### **- Reference data from 1000 Genome Project** :sparkles:
+### :sparkles: **Reference data from 1000 Genome Project** :sparkles:
 
 > - European samples: 486. Subpopulations: Spain, Finland, Italy and United Kingdon.
 > - African samples: 871. Subpopulations: Gambia, Kenya, Nigeria and Sierra Leone.
@@ -38,7 +38,7 @@
 > - Othe samples: 732. Subpopulations: Pakistan, Bangladesh, Sri Lanka, India and USA.
 
 
-### **- Reference data from HGDP** :sparkles:
+### :sparkles: **Reference data from HGDP** :sparkles:
 
  - [Paper link](https://pmc.ncbi.nlm.nih.gov/articles/PMC7115999/). 930 participants.
  - [Data link](https://ngs.sanger.ac.uk/production/hgdp/hgdp_wgs.20190516/).
@@ -73,12 +73,12 @@ $ cat /home/DATA/HGDP_vcf/HGDP_parental/ALL_POP.txt | wc -l
  > O dado está bastante filtrado, e está pronto para ser usado para merge com o REDS (ou qualquer outra população miscigenada de interesse)
 
 
-### **- Admixed data from SABE** :sparkles:
+### :sparkles: **Admixed data from SABE** :sparkles:
 
 > - Admixed samples: 1,323. São Paulo city of Brazil.
 
 
-### **- Admixed data from RED-III** :sparkles:
+### vAdmixed data from RED-III** :sparkles:
 
  - [Web link](https://redsivp.com/reds-iii/).
  - [Paper link](https://pmc.ncbi.nlm.nih.gov/articles/PMC4383641/).
@@ -93,16 +93,16 @@ $ cat /home/DATA/HGDP_vcf/HGDP_parental/ALL_POP.txt | wc -l
 ```
 
 
-### **- Admixed data from SCD** :sparkles:
+### :sparkles: **Admixed data from SCD** :sparkles:
 
 > - Admixed samples: 640. Populations: various regions of Brazil.
 
 
-### **- Admixed data from 1000 Genome Project** :sparkles:
+### :sparkles: **Admixed data from 1000 Genome Project** :sparkles:
 
 > - Admixed samples: 883. Populations: Barbados, Colombia, Mexico, Peru, Puerto Rico and USA.
 
 
-### **- Admixed data from HGPD** :sparkles:
+### :sparkles: **Admixed data from HGPD** :sparkles:
 
 > - Admixed samples: 51. Populations: Colombia, Mexico, and Brazil.
