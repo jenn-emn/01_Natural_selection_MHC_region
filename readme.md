@@ -26,9 +26,9 @@
  - [hapmap3 from admixture](https://dalexander.github.io/admixture/download.html)
 
 > ####################################################################################
-> - Reference European samples: 572.
-> - Reference African samples: 871.
-> - Reference East Asian samples: 787.
+> - Total reference European samples: 572.
+> - Total reference African samples: 871.
+> - Total reference East Asian samples: 787.
 > - Other reference samples: 1,168.
 >
 > ####################################################################################
