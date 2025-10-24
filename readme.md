@@ -17,13 +17,30 @@
  - Backup is in local machine at /home/jenn/genevol/data/data_toys/hapmap3_from_admixture/
  - [hapmap3 from admixture](https://dalexander.github.io/admixture/download.html)
 
+> Reference European samples: 572.
+> Reference African samples: 871.
+> Reference East Asian samples: 787.
+> Other reference samples: 1,168.
 
-### **- Reference data HGDP** :sparkles:
+### **- Reference data from 1000 Genome Project** :sparkles:
+
+ - European samples: 486. Subpopulations: Spain, Finland, Italy and United Kingdon.
+ - African samples: 871. Subpopulations: Gambia, Kenya, Nigeria and Sierra Leone.
+ - East Asia samples: 617. Subpopulations: China, Japan and Vietnam.
+ - Othe samples: 732. Subpopulations: Pakistan, Bangladesh, Sri Lanka, India and USA.
+
+
+### **- Reference data from HGDP** :sparkles:
 
  - [Paper link](https://pmc.ncbi.nlm.nih.gov/articles/PMC7115999/). 930 participants.
  - [Data link](https://ngs.sanger.ac.uk/production/hgdp/hgdp_wgs.20190516/).
  - [Metadata](https://ngs.sanger.ac.uk/production/hgdp/hgdp_wgs.20190516/metadata/), population and super-population informations about all participants (930) is available.
  - Filtered HGDP is available.
+
+ - European samples: 86. Subpopulations: France and Italy.
+ - African samples: 88. Subpopulations: South Africa, Senegal, Nigeria, Nambia, Kenya and Congo.
+ - East Asia samples: 170. Subpopulations: China, Japan and Cambodia.
+
 ```
 # metadata (930 samples)
 /home/jennifer/02_data/02_data_reference/hgdp.20190516/hgdp_wgs.20190516.metadata.txt
@@ -48,10 +65,36 @@ $ cat /home/DATA/HGDP_vcf/HGDP_parental/ALL_POP.txt | wc -l
  > O dado está bastante filtrado, e está pronto para ser usado para merge com o REDS (ou qualquer outra população miscigenada de interesse)
 
 
-### **- Sample data RED-III** :sparkles:
+### **- Admixed data from SABE** :sparkles:
+
+- Admixed samples: 1,323. São Paulo city of Brazil.
+
+
+### **- Admixed data from RED-III** :sparkles:
 
  - [Web link](https://redsivp.com/reds-iii/).
  - [Paper link](https://pmc.ncbi.nlm.nih.gov/articles/PMC4383641/).
+ - Data was extracted from the release [Freeze 10b](https://www.ncbi.nlm.nih.gov/projects/gap/cgi-bin/document.cgi?study_id=phs001569.v1.p1&phd=8693), which is part of the NHLBI Trans-Omics for Precision Medicine (TOPMed) Whole Genome Sequencing Program.
+ - Study description: [phs001468](https://www.ncbi.nlm.nih.gov/projects/gap/cgi-bin/study.cgi?study_id=phs001468.v3.p1)
+ - Number of samples: 2,795. [Subject Sample Telemetry Report (SSTR)](https://www.ncbi.nlm.nih.gov/gap/sstr/report/phs001468.v3.p1) includes sample id and sex.
+
+ - Admixed samples: 2,635. Populations: various regions of Brazil.
+
 ```
 # metadata ()
 ```
+
+
+### **- Admixed data from SCD** :sparkles:
+
+- Admixed samples: 640. Populations: various regions of Brazil.
+
+
+### **- Admixed data from 1000 Genome Project** :sparkles:
+
+- Admixed samples: 883. Populations: Barbados, Colombia, Mexico, Peru, Puerto Rico and USA.
+
+
+### **- Admixed data from HGPD** :sparkles:
+
+- Admixed samples: 51. Populations: Colombia, Mexico, and Brazil.
