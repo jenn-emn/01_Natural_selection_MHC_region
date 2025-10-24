@@ -7,7 +7,15 @@
 
 
 ## Tools
-- [admixture](https://dalexander.github.io/admixture/download.html)
+
+- [admixture (global ancestry)](https://dalexander.github.io/admixture/download.html)
+- [bcftools from samtools](https://samtools.github.io/bcftools/howtos/install.html)
+- [flare (local ancestry)](https://github.com/browning-lab/flare)
+- [gnomix (local ancestry)](https://github.com/AI-sandbox/gnomix)
+- [plink 1.9, Linux 64-bit stable](https://www.cog-genomics.org/plink/1.9/)
+- [plink 2.0, Linux 64-bit alpha](https://www.cog-genomics.org/plink/2.0/)
+- [rfmix 2.0 (local ancestry)](https://github.com/slowkoni/rfmix)
+- [shapeit5 (phasing)](https://odelaneau.github.io/shapeit5/)
 
 
 
@@ -24,10 +32,10 @@
 
 ### **- Reference data from 1000 Genome Project** :sparkles:
 
- - European samples: 486. Subpopulations: Spain, Finland, Italy and United Kingdon.
- - African samples: 871. Subpopulations: Gambia, Kenya, Nigeria and Sierra Leone.
- - East Asia samples: 617. Subpopulations: China, Japan and Vietnam.
- - Othe samples: 732. Subpopulations: Pakistan, Bangladesh, Sri Lanka, India and USA.
+> - European samples: 486. Subpopulations: Spain, Finland, Italy and United Kingdon.
+> - African samples: 871. Subpopulations: Gambia, Kenya, Nigeria and Sierra Leone.
+> - East Asia samples: 617. Subpopulations: China, Japan and Vietnam.
+> - Othe samples: 732. Subpopulations: Pakistan, Bangladesh, Sri Lanka, India and USA.
 
 
 ### **- Reference data from HGDP** :sparkles:
@@ -37,9 +45,9 @@
  - [Metadata](https://ngs.sanger.ac.uk/production/hgdp/hgdp_wgs.20190516/metadata/), population and super-population informations about all participants (930) is available.
  - Filtered HGDP is available.
 
- - European samples: 86. Subpopulations: France and Italy.
- - African samples: 88. Subpopulations: South Africa, Senegal, Nigeria, Nambia, Kenya and Congo.
- - East Asia samples: 170. Subpopulations: China, Japan and Cambodia.
+> - European samples: 86. Subpopulations: France and Italy.
+> - African samples: 88. Subpopulations: South Africa, Senegal, Nigeria, Nambia, Kenya and Congo.
+> - East Asia samples: 170. Subpopulations: China, Japan and Cambodia.
 
 ```
 # metadata (930 samples)
@@ -67,7 +75,7 @@ $ cat /home/DATA/HGDP_vcf/HGDP_parental/ALL_POP.txt | wc -l
 
 ### **- Admixed data from SABE** :sparkles:
 
-- Admixed samples: 1,323. São Paulo city of Brazil.
+> - Admixed samples: 1,323. São Paulo city of Brazil.
 
 
 ### **- Admixed data from RED-III** :sparkles:
@@ -78,7 +86,7 @@ $ cat /home/DATA/HGDP_vcf/HGDP_parental/ALL_POP.txt | wc -l
  - Study description: [phs001468](https://www.ncbi.nlm.nih.gov/projects/gap/cgi-bin/study.cgi?study_id=phs001468.v3.p1)
  - Number of samples: 2,795. [Subject Sample Telemetry Report (SSTR)](https://www.ncbi.nlm.nih.gov/gap/sstr/report/phs001468.v3.p1) includes sample id and sex.
 
- - Admixed samples: 2,635. Populations: various regions of Brazil.
+> - Admixed samples: 2,635. Populations: various regions of Brazil.
 
 ```
 # metadata ()
@@ -87,14 +95,14 @@ $ cat /home/DATA/HGDP_vcf/HGDP_parental/ALL_POP.txt | wc -l
 
 ### **- Admixed data from SCD** :sparkles:
 
-- Admixed samples: 640. Populations: various regions of Brazil.
+> - Admixed samples: 640. Populations: various regions of Brazil.
 
 
 ### **- Admixed data from 1000 Genome Project** :sparkles:
 
-- Admixed samples: 883. Populations: Barbados, Colombia, Mexico, Peru, Puerto Rico and USA.
+> - Admixed samples: 883. Populations: Barbados, Colombia, Mexico, Peru, Puerto Rico and USA.
 
 
 ### **- Admixed data from HGPD** :sparkles:
 
-- Admixed samples: 51. Populations: Colombia, Mexico, and Brazil.
+> - Admixed samples: 51. Populations: Colombia, Mexico, and Brazil.
