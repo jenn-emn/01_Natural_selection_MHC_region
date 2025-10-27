@@ -15,6 +15,10 @@ mv /home/jennifer/02_data/02_data_reference/1kgp/hg38_corrected.psam \
 
 
 
+# Download chr6_hg38.pgen.zst (178 MiB), chr6_hg38_rs.pvar.zst (154 MiB)
+
+
+
 
 
 # end

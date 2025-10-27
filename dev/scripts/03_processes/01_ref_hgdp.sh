@@ -1,7 +1,6 @@
 #!/bin/bash
 
 
-
 # from https://www.cog-genomics.org/plink/2.0/resources#phase3_1kg
 # Download hgdp.psam and rename to "hgdp_all.psam" before use
 # .psam file have subpopulation information
