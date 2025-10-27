@@ -25,13 +25,17 @@
  - Backup is in local machine at /home/jenn/genevol/data/data_toys/hapmap3_from_admixture/
  - [hapmap3 from admixture](https://dalexander.github.io/admixture/download.html)
 
-> ####################################################################################
+
+
+> ############################################################################
 > - Total reference European samples: 572.
 > - Total reference African samples: 871.
 > - Total reference East Asian samples: 787.
 > - Other reference samples: 1,168.
 >
-> ####################################################################################
+> ############################################################################
+
+
 
 ### :sparkles: **Reference data from 1000 Genome Project** :sparkles:
 
@@ -41,16 +45,25 @@
 > - Othe samples: 732. Subpopulations: Pakistan, Bangladesh, Sri Lanka, India and USA.
 
 
+Download the [pgen/pvar/psam files](https://www.cog-genomics.org/plink/2.0/resources#phase3_1kg)
+- 300 trios
+- 1st degree: deg1_hg38.king.cutoff.out.id (621 samples)
+- 1st+2nd degree: deg2_hg38.king.cutoff.out.id (629 samples)
+  These lists were generated from the original dataset with "--king-cutoff 0.177" and "--king-cutoff 0.0884", respectively.
+  The --make-king-table + --king-table-filter report listing all 1st/2nd-degree related sample pairs into the "deg2_hg38.kin0" file.
+
+
+
 ### :sparkles: **Reference data from HGDP** :sparkles:
+
+> - European samples: 86. Subpopulations: France and Italy.
+> - African samples: 88. Subpopulations: South Africa, Senegal, Nigeria, Nambia, Kenya and Congo.
+> - East Asia samples: 170. Subpopulations: China, Japan and Cambodia.
 
  - [Paper link](https://pmc.ncbi.nlm.nih.gov/articles/PMC7115999/). 930 participants.
  - [Data link](https://ngs.sanger.ac.uk/production/hgdp/hgdp_wgs.20190516/).
  - [Metadata](https://ngs.sanger.ac.uk/production/hgdp/hgdp_wgs.20190516/metadata/), population and super-population informations about all participants (930) is available.
  - Filtered HGDP is available.
-
-> - European samples: 86. Subpopulations: France and Italy.
-> - African samples: 88. Subpopulations: South Africa, Senegal, Nigeria, Nambia, Kenya and Congo.
-> - East Asia samples: 170. Subpopulations: China, Japan and Cambodia.
 
 ```
 # metadata (930 samples)
