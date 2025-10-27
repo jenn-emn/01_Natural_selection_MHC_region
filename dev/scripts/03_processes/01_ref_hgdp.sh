@@ -54,7 +54,7 @@ plink2 \
     --recode vcf bgz \
     --out /home/jennifer/02_data/02_data_reference/hgdp.20190516/hgdp.chr6
     # 929 samples (317 females, 612 males; 929 founders)
-    # 4495706 variants loaded from
+    # 4495706 variants
 
 
 
