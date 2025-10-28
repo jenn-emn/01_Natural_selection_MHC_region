@@ -46,11 +46,12 @@
 
 
 Download the [pgen/pvar/psam files](https://www.cog-genomics.org/plink/2.0/resources#phase3_1kg)
-- 300 trios
-- 1st degree: deg1_hg38.king.cutoff.out.id (621 samples)
-- 1st+2nd degree: deg2_hg38.king.cutoff.out.id (629 samples)
-  These lists were generated from the original dataset with "--king-cutoff 0.177" and "--king-cutoff 0.0884", respectively.
-  The --make-king-table + --king-table-filter report listing all 1st/2nd-degree related sample pairs into the "deg2_hg38.kin0" file.
+- 1kgp.chr6.pfiles have 3,202 samples with 4,315,217 variants.
+
+- 300 trios:
+  - 1st degree (--king-cutoff 0.177): deg1_hg38.king.cutoff.out.id (621 samples)
+  - 1st+2nd degree (--king-cutoff 0.0884): deg2_hg38.king.cutoff.out.id (629 samples)
+  - 1st/2nd-degree list (--make-king-table + --king-table-filter): "deg2_hg38.kin0" file.
 
 
 
