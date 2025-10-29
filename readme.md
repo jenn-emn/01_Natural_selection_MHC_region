@@ -45,7 +45,8 @@
 > - Othe samples: 732. Subpopulations: Pakistan, Bangladesh, Sri Lanka, India and USA.
 
 
-Download the [pgen/pvar/psam files](https://www.cog-genomics.org/plink/2.0/resources#phase3_1kg)
+- [Publication](https://www.nature.com/articles/nature15393)
+- Download the [pgen/pvar/psam files](https://www.cog-genomics.org/plink/2.0/resources#phase3_1kg)
 - 1kgp.chr6.pfiles have 3,202 samples with 4,315,217 variants.
 
 - 300 trios:
