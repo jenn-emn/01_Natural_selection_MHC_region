@@ -21,7 +21,7 @@
 
 ## Data
 
-### :sparkles: **Data toys** :sparkles:
+#### :sparkles: **Data toys** :sparkles:
  - [hapmap3 from admixture](https://dalexander.github.io/admixture/download.html)
 
 
@@ -36,7 +36,7 @@
 
 
 
-### :sparkles: **Reference data from 1000 Genome Project** :sparkles:
+#### :sparkles: **Reference data from 1000 Genome Project** :sparkles:
 
 > - European samples: 486. Subpopulations: Spain, Finland, Italy and United Kingdon.
 > - African samples: 871. Subpopulations: Gambia, Kenya, Nigeria and Sierra Leone.
@@ -55,7 +55,7 @@
 
 
 
-### :sparkles: **Reference data from HGDP** :sparkles:
+#### :sparkles: **Reference data from HGDP** :sparkles:
 
 > - European samples: 86. Subpopulations: France and Italy.
 > - African samples: 88. Subpopulations: South Africa, Senegal, Nigeria, Nambia, Kenya and Congo.
@@ -79,12 +79,12 @@
  > O dado está bastante filtrado, e está pronto para ser usado para merge com o REDS (ou qualquer outra população miscigenada de interesse)
 
 
-### :sparkles: **Admixed data from SABE** :sparkles:
+#### :sparkles: **Admixed data from SABE** :sparkles:
 
 > - Admixed samples: 1,323. São Paulo city of Brazil.
 
 
-### :sparkles: **Admixed data from RED-III** :sparkles:
+#### :sparkles: **Admixed data from RED-III** :sparkles:
 
  - [Web link](https://redsivp.com/reds-iii/).
  - [Paper link](https://pmc.ncbi.nlm.nih.gov/articles/PMC4383641/).
@@ -94,21 +94,17 @@
 
 > - Admixed samples: 2,635. Populations: various regions of Brazil.
 
-```
-# metadata ()
-```
 
-
-### :sparkles: **Admixed data from SCD** :sparkles:
+#### :sparkles: **Admixed data from SCD** :sparkles:
 
 > - Admixed samples: 640. Populations: various regions of Brazil.
 
 
-### :sparkles: **Admixed data from 1000 Genome Project** :sparkles:
+#### :sparkles: **Admixed data from 1000 Genome Project** :sparkles:
 
 > - Admixed samples: 883. Populations: Barbados, Colombia, Mexico, Peru, Puerto Rico and USA.
 
 
-### :sparkles: **Admixed data from HGPD** :sparkles:
+#### :sparkles: **Admixed data from HGPD** :sparkles:
 
 > - Admixed samples: 51. Populations: Colombia, Mexico, and Brazil.
