@@ -22,7 +22,6 @@
 ## Data
 
 ### :sparkles: **Data toys** :sparkles:
- - Backup is in local machine at /home/jenn/genevol/data/data_toys/hapmap3_from_admixture/
  - [hapmap3 from admixture](https://dalexander.github.io/admixture/download.html)
 
 
@@ -67,17 +66,6 @@
  - [Metadata](https://ngs.sanger.ac.uk/production/hgdp/hgdp_wgs.20190516/metadata/), population and super-population informations about all participants (930) is available.
  - Filtered HGDP is available.
 
-```
-# metadata (930 samples)
-/home/jennifer/02_data/02_data_reference/hgdp.20190516/hgdp_wgs.20190516.metadata.txt
-
-# filtered data (930 samples)
-/home/DATA/HGDP_vcf/hgdp3.0_filter/hgdp_wgs.20190516.full.chr*_filter.vcf.gz
-
-
-# sample list (543 filtered sample ids)
-$ cat /home/DATA/HGDP_vcf/HGDP_parental/ALL_POP.txt | wc -l
-```
  > /home/DATA/HGDP_vcf/HGDP_parental/README.txt
  >
  > O dados do HGDP (a partir dos dados que a Flávia filtrou e faseou, em /media/storage/genevol/hgdp3.0_filter/phased/) para as análises de ancestralidade Global e Local para o REDS-III. De forma geral, foi feito:
