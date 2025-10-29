@@ -26,8 +26,37 @@ vcfhgdp="/home/jennifer/02_data/02_data_reference/hgdp.20190516/hgdp.chr6.vcf.gz
 out_path="/home/jennifer/02_data/03_data_processing/01_qc_GA"
 
 
+# Populations selection from 1kgp
+# AFR: Gambian, Kenya, Nigeria, Sierra Leone
+    # ESN  Esan in Nigeria
+    # GWD  Gambian in Western Division, The Gambia
+    # LWK  Luhya in Webuye, Kenya
+    # MSL  Mende in Sierra Leone
+    # YRI  Yoruba in Ibadan, Nigeria
+# EAS: China, Japan, Vietnam
+    # CDX  Chinese Dai in Xishuangbanna, China
+    # CHB  Han Chinese in Bejing, China
+    # CHD  Chinese in Denver, Colorado
+    # CHS  Southern Han Chinese, China
+    # JPT  Japanese in Tokyo, Japan
+    # KHV  Kinh in Ho Chi Minh City, Vietnam
+# EUR: Finland, Italy, Spain, United Kingdom
+    # FIN  Finnish in Finland
+    # TSI  Toscani in Italy
+    # IBS  Iberian populations in Spain
+    # GBR  British in England and Scotland
+
+
+# Populations selection from HGDP
+# AFR: Congo, Kenya, Namibia, Nigeria, South Africa, Senegal
+# EAS: Cambodia, China, Japan
+# EUR: France, Italy
+
+
 # QC 1kgp
 
+
+# QC HGDP
 
 
 # end

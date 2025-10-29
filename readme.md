@@ -45,6 +45,25 @@
 
 
 - [Publication](https://www.nature.com/articles/nature15393)
+- [Acronyms of populations](https://mathgen.stats.ox.ac.uk/impute/1000GP_Phase3.html)
+  - AFR: Gambian, Kenya, Nigeria, Sierra Leone
+    - ESN  Esan in Nigeria
+    - GWD  Gambian in Western Division, The Gambia
+    - LWK  Luhya in Webuye, Kenya
+    - MSL  Mende in Sierra Leone
+    - YRI  Yoruba in Ibadan, Nigeria
+  - EAS: China, Japan, Vietnam
+    - CDX  Chinese Dai in Xishuangbanna, China
+    - CHB  Han Chinese in Bejing, China
+    - CHD  Chinese in Denver, Colorado
+    - CHS  Southern Han Chinese, China
+    - JPT  Japanese in Tokyo, Japan
+    - KHV  Kinh in Ho Chi Minh City, Vietnam
+  - EUR: Finland, Italy, Spain, United Kingdom
+    - FIN  Finnish in Finland
+    - TSI  Toscani in Italy
+    - IBS  Iberian populations in Spain
+    - GBR  British in England and Scotland
 - Download the [pgen/pvar/psam files](https://www.cog-genomics.org/plink/2.0/resources#phase3_1kg)
 - 1kgp.chr6.pfiles have 3,202 samples with 4,315,217 variants.
 
