@@ -92,12 +92,9 @@
     - Cambodian - Cambodia
     - Dai, Daur, Han, Hezhen, Lahu, Miao, Mongolian, Naxi, Northern Han, Oroqen, She, Tu, Tujia, Xibo, Yi - China
     - Japanese - Japan
-    - Yakut - Russia
   - EUR: France and Italy
-    - Adygei, Russian - Russia
     - Basque, French - France
     - BergamoItalian, Sardinian, Tuscan - Italy
-    - Orcadian - Scotland (UK)
 
  - Filtered HGDP is available.
  > /home/DATA/HGDP_vcf/HGDP_parental/README.txt
