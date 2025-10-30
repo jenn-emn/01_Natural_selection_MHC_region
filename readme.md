@@ -21,9 +21,6 @@
 
 ## Data
 
-#### :sparkles: **Data toys** :sparkles:
- - [hapmap3 from admixture](https://dalexander.github.io/admixture/download.html)
-
 
 
 > ############################################################################
@@ -87,41 +84,22 @@
   - AFR: South Africa, Senegal, Nigeria, Nambia, Kenya and Congo
     - BantuKenya - Kenya
     - BantuSouthAfrica - South Africa
-    - Biaka - Congo
+    - Biaka, Mbuti - Congo
     - Mandenka - Senegal
-    - Mbuti - Congo
     - San - Namibia
     - Yoruba - Nigeria
   - EAS: China, Japan and Cambodia
     - Cambodian - Cambodia
-    - Dai - China
-    - Daur - China
-    - Han - China
-    - Hezhen - China
+    - Dai, Daur, Han, Hezhen, Lahu, Miao, Mongolian, Naxi, Northern Han, Oroqen, She, Tu, Tujia, Xibo, Yi - China
     - Japanese - Japan
-    - Lahu - China
-    - Miao - China
-    - Mongolian - China
-    - Naxi - China
-    - NorthernHan - China
-    - Oroqen - China
-    - She - China
-    - Tu - China
-    - Tujia - China
-    - Xibo - China
     - Yakut - Russia
-    - Yi - China
   - EUR: France and Italy
-    - Adygei - Russia
-    - Basque - France
-    - BergamoItalian - Italy
-    - French - France
-    - Orcadian - Escócia (UK)
-    - Russian - Russia
-    - Sardinian - Italy
-    - Tuscan - Italy
- - Filtered HGDP is available.
+    - Adygei, Russian - Russia
+    - Basque, French - France
+    - BergamoItalian, Sardinian, Tuscan - Italy
+    - Orcadian - Scotland (UK)
 
+ - Filtered HGDP is available.
  > /home/DATA/HGDP_vcf/HGDP_parental/README.txt
  >
  > O dados do HGDP (a partir dos dados que a Flávia filtrou e faseou, em /media/storage/genevol/hgdp3.0_filter/phased/) para as análises de ancestralidade Global e Local para o REDS-III. De forma geral, foi feito:
@@ -135,9 +113,11 @@
  > O dado está bastante filtrado, e está pronto para ser usado para merge com o REDS (ou qualquer outra população miscigenada de interesse)
 
 
+
 #### :sparkles: **Admixed data from SABE** :sparkles:
 
 > - Admixed samples: 1,323. São Paulo city of Brazil.
+
 
 
 #### :sparkles: **Admixed data from RED-III** :sparkles:
@@ -151,9 +131,11 @@
 > - Admixed samples: 2,635. Populations: various regions of Brazil.
 
 
+
 #### :sparkles: **Admixed data from SCD** :sparkles:
 
 > - Admixed samples: 640. Populations: various regions of Brazil.
+
 
 
 #### :sparkles: **Admixed data from 1000 Genome Project** :sparkles:
@@ -161,6 +143,12 @@
 > - Admixed samples: 883. Populations: Barbados, Colombia, Mexico, Peru, Puerto Rico and USA.
 
 
+
 #### :sparkles: **Admixed data from HGPD** :sparkles:
 
 > - Admixed samples: 51. Populations: Colombia, Mexico, and Brazil.
+
+
+
+#### :sparkles: **Data toys** :sparkles:
+ - [hapmap3 from admixture](https://dalexander.github.io/admixture/download.html)
