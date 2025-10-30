@@ -125,6 +125,7 @@
  - [Web link](https://redsivp.com/reds-iii/).
  - [Paper link](https://pmc.ncbi.nlm.nih.gov/articles/PMC4383641/).
  - Data was extracted from the release [Freeze 10b](https://www.ncbi.nlm.nih.gov/projects/gap/cgi-bin/document.cgi?study_id=phs001569.v1.p1&phd=8693), which is part of the NHLBI Trans-Omics for Precision Medicine (TOPMed) Whole Genome Sequencing Program.
+ - For the list of TBD studies included in Freeze 10, see “[Table 1. Summary of TOPMed studies in Freeze 10](https://www.ncbi.nlm.nih.gov/projects/gap/cgi-bin/document.cgi?study_id=phs001569.v1.p1&phd=8693#t1).” 
  - Study description: [phs001468](https://www.ncbi.nlm.nih.gov/projects/gap/cgi-bin/study.cgi?study_id=phs001468.v3.p1)
  - Number of samples: 2,795. [Subject Sample Telemetry Report (SSTR)](https://www.ncbi.nlm.nih.gov/gap/sstr/report/phs001468.v3.p1) includes sample id and sex.
 
