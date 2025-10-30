@@ -83,6 +83,43 @@
  - [Paper link](https://pmc.ncbi.nlm.nih.gov/articles/PMC7115999/). 930 participants.
  - [Data link](https://ngs.sanger.ac.uk/production/hgdp/hgdp_wgs.20190516/).
  - [Metadata](https://ngs.sanger.ac.uk/production/hgdp/hgdp_wgs.20190516/metadata/), population and super-population informations about all participants (930) is available.
+ - Populations
+  - AFR: South Africa, Senegal, Nigeria, Nambia, Kenya and Congo
+    - BantuKenya - Kenya
+    - BantuSouthAfrica - South Africa
+    - Biaka - Congo
+    - Mandenka - Senegal
+    - Mbuti - Congo
+    - San - Namibia
+    - Yoruba - Nigeria
+  - EAS: China, Japan and Cambodia
+    - Cambodian - Cambodia
+    - Dai - China
+    - Daur - China
+    - Han - China
+    - Hezhen - China
+    - Japanese - Japan
+    - Lahu - China
+    - Miao - China
+    - Mongolian - China
+    - Naxi - China
+    - NorthernHan - China
+    - Oroqen - China
+    - She - China
+    - Tu - China
+    - Tujia - China
+    - Xibo - China
+    - Yakut - Russia
+    - Yi - China
+  - EUR: France and Italy
+    - Adygei - Russia
+    - Basque - France
+    - BergamoItalian - Italy
+    - French - France
+    - Orcadian - Escócia (UK)
+    - Russian - Russia
+    - Sardinian - Italy
+    - Tuscan - Italy
  - Filtered HGDP is available.
 
  > /home/DATA/HGDP_vcf/HGDP_parental/README.txt

@@ -48,9 +48,55 @@ out_path="/home/jennifer/02_data/03_data_processing/01_qc_GA"
 
 
 # Populations selection from HGDP
+# awk 'NR > 1 {print $6, $3}'   /home/jennifer/02_data/02_data_reference/hgdp.20190516/hgdp.chr6.psam | \
+#   sort -u >   /home/jennifer/02_data/02_data_reference/hgdp.20190516/hgdp_wgs.20190516.populations.txt
+
 # AFR: Congo, Kenya, Namibia, Nigeria, South Africa, Senegal
+    # AFRICA BantuKenya - Kenya
+    # AFRICA BantuSouthAfrica - South Africa
+    # AFRICA Biaka - Congo
+    # AFRICA Mandenka - Senegal
+    # AFRICA Mbuti - Congo
+    # AFRICA San - Namibia
+    # AFRICA Yoruba - Nigeria
 # EAS: Cambodia, China, Japan
+    # EAST_ASIA Cambodian - Cambodia
+    # EAST_ASIA Dai - China
+    # EAST_ASIA Daur - China
+    # EAST_ASIA Han - China
+    # EAST_ASIA Hezhen - China
+    # EAST_ASIA Japanese - Japan
+    # EAST_ASIA Lahu - China
+    # EAST_ASIA Miao - China
+    # EAST_ASIA Mongolian - China
+    # EAST_ASIA Naxi - China
+    # EAST_ASIA NorthernHan - China
+    # EAST_ASIA Oroqen - China
+    # EAST_ASIA She - China
+    # EAST_ASIA Tu - China
+    # EAST_ASIA Tujia - China
+    # EAST_ASIA Xibo - China
+    # EAST_ASIA Yakut - Russia
+    # EAST_ASIA Yi - China
 # EUR: France, Italy
+    # EUROPE Adygei - Russia
+    # EUROPE Basque - France
+    # EUROPE BergamoItalian - Italy
+    # EUROPE French - France
+    # EUROPE Orcadian - Escócia (UK)
+    # EUROPE Russian - Russia
+    # EUROPE Sardinian - Italy
+    # EUROPE Tuscan - Italy
+
+# Excluding the population:
+#grep -v -E "AMERICA|CENTRAL_SOUTH_ASIA|Yakut|Adygei|Orcadian|Russian" \
+#    /home/jennifer/02_data/02_data_reference/hgdp.20190516/hgdp.chr6.psam  > \
+#    /home/jennifer/02_data/02_data_reference/hgdp.20190516/hgdp.chr6.selected.pops.psam
+
+
+
+
+
 
 
 # QC 1kgp
