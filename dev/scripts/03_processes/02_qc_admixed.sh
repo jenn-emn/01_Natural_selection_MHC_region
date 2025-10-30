@@ -22,6 +22,7 @@ vcfsabe="/home/DATA/SABE_VCF/vcfs_SABE1172/SABE1172.1a1172.CONCAT.hg38.VQSR.PASS
 vcfreds="/home/DATA/REDS_vcfs/freeze10b/plink_format/chr6_REDS_trimmed_biallelic_noindel_HGDPSNPs_freeze10b_phased.recode.vcf"
     # 2746 samples
 #vcfscd=""
+#/home/DATA/REDS_vcfs/freeze10b/info/sample_annotation/initial.freeze.10.sample.study.map.txt # Bos-Brazil-SCD
 vcf1kgp="/home/jennifer/02_data/02_data_reference/1kgp/1kgp.chr6.vcf.gz"
     # 3202 samples (1603 females, 1598 males, 1 ambiguous; 2583 founders)
     # 4315217 variants
