@@ -46,6 +46,12 @@ out_path="/home/jennifer/02_data/03_data_processing/01_qc_GA"
     # IBS  Iberian populations in Spain
     # GBR  British in England and Scotland
 
+# Excluding the population:
+#grep -v -E "ESN|GWD|LWK|MSL|YRI|CDX|CHB|CHD|CHS|JPT|KHV|FIN|TSI|IBS|GBR" \
+#    /home/jennifer/02_data/02_data_reference/1kgp/1kgp.chr6.psam  > \
+#    /home/jennifer/02_data/02_data_reference/1kgp/1kgp.chr6.selected.pops.psam
+
+
 
 # Populations selection from HGDP
 # awk 'NR > 1 {print $6, $3}'   /home/jennifer/02_data/02_data_reference/hgdp.20190516/hgdp.chr6.psam | \
