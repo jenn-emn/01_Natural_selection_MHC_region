@@ -125,7 +125,7 @@
  - Data was extracted from the release [Freeze 10b](https://www.ncbi.nlm.nih.gov/projects/gap/cgi-bin/document.cgi?study_id=phs001569.v1.p1&phd=8693), which is part of the NHLBI Trans-Omics for Precision Medicine (TOPMed) Whole Genome Sequencing Program.TOTAL SAMPLES: 184,878.
  - For the list of TBD studies included in Freeze 10, see “[Table 1. Summary of TOPMed studies in Freeze 10](https://www.ncbi.nlm.nih.gov/projects/gap/cgi-bin/document.cgi?study_id=phs001569.v1.p1&phd=8693#t1).” 
  - Study description: [phs001468](https://www.ncbi.nlm.nih.gov/projects/gap/cgi-bin/study.cgi?study_id=phs001468.v3.p1), study name: Recipient Epidemiology and Donor Evaluation Study-III, sequencing center: Baylor, principal investigator: Brian Custer, Shannon Kelly.
-  - Study samples: 2621. Samples in the VCF: 2746. Number of samples: 2,795. [Subject Sample Telemetry Report (SSTR)](https://www.ncbi.nlm.nih.gov/gap/sstr/report/phs001468.v3.p1) includes sample id and sex.
+  - Study samples: 2621. Samples in the VCF: 2746. Total samples = 2,748, sequence data = 2621. [Subject Sample Telemetry Report (SSTR)](https://www.ncbi.nlm.nih.gov/gap/sstr/report/phs001468.v3.p1) includes sample id and sex.
   - Study name in the VCF: REDS-III-SCD.
  - [Web link](https://redsivp.com/reds-iii/).
  - [Paper link](https://pmc.ncbi.nlm.nih.gov/articles/PMC4383641/).
@@ -139,7 +139,7 @@
  - Data was extracted from the release [Freeze 10b](https://www.ncbi.nlm.nih.gov/projects/gap/cgi-bin/document.cgi?study_id=phs001569.v1.p1&phd=8693), which is part of the NHLBI Trans-Omics for Precision Medicine (TOPMed) Whole Genome Sequencing Program.TOTAL SAMPLES: 184,878.
  - For the list of TBD studies included in Freeze 10, see “[Table 1. Summary of TOPMed studies in Freeze 10](https://www.ncbi.nlm.nih.gov/projects/gap/cgi-bin/document.cgi?study_id=phs001569.v1.p1&phd=8693#t1).” 
  - Study description: [phs001599](https://www.ncbi.nlm.nih.gov/projects/gap/cgi-bin/study.cgi?study_id=phs001599.v1.p1), study name: Boston-Brazil Collaborative Study of Sickle Cell Disease, sequencing center: Baylor, principal investigator: Vijay Sankaran.
-  - Study samples: 415. Samples in the VCF: 415. Number of samples: 2,795. [Subject Sample Telemetry Report (SSTR)](https://www.ncbi.nlm.nih.gov/gap/sstr/report/phs001599.v1.p1) includes sample id and sex.
+  - Study samples: 415. Samples in the VCF: 415. Total samples = 943, sequence data = 387 [Subject Sample Telemetry Report (SSTR)](https://www.ncbi.nlm.nih.gov/gap/sstr/report/phs001599.v1.p1) includes sample id and sex.
   - Study name in the VCF: Bos-Brazil-SCD.
  - [Paper link](https://pubmed.ncbi.nlm.nih.gov/18667698/)
 
